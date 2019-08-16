@@ -2,6 +2,7 @@ const express = require('express');
 let app = express();
 const bodyParser = require('body-parser');
 const githubAPIcall = require('../helpers/github.js');
+const mongooseSave = require('../database/index.js');
 
 app.use(bodyParser.json());
 
@@ -18,8 +19,15 @@ app.post('/repos', function (req, res) {
     if (err) {
       console.log(err);
     } else {
-        console.log(repos);
-        res.send('hi');
+        repos.forEach((repo) => {
+          mongooseSave.save(repo, (err, data) => {
+            if (err) {
+              res.status(500);
+            } else {
+              res.status(200).send('success');
+            }
+          });
+        })
       }
     })
   // console.log(req.body);

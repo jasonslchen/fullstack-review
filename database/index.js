@@ -15,10 +15,22 @@ let repoSchema = mongoose.Schema({
 
 let Repo = mongoose.model('Repo', repoSchema);
 
-let save = (/* TODO */) => {
-  // TODO: Your code here
-  // This function should save a repo or repos to
-  // the MongoDB
+let save = (userRepo, callback) => {
+  let newEntry = new Repo({
+    user: userRepo.owner.login,
+    repoName: userRepo.name,
+    repFullName: userRepo.full_name,
+    repoHTMLurl: userRepo.html_url,
+    fork: userRepo.forks_count
+  })
+
+  newEntry.save((err) => {
+    if (err) {
+      callback(err, null);
+    }
+    callback(null)
+  })
+
 }
 
 module.exports.save = save;
