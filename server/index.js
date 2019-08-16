@@ -18,13 +18,15 @@ app.post('/repos', function (req, res) {
   githubAPIcall.getReposByUsername(req.body.user, (err, repos) => {
     if (err) {
       console.log(err);
+      res.status(500).send();
     } else {
         repos.forEach((repo) => {
           mongooseSave.save(repo, (err, data) => {
             if (err) {
-              res.status(500);
+              console.log(err);
+              res.status(500).send(err);
             } else {
-              res.status(200).send('success');
+              res.status(200).send();
             }
           });
         })

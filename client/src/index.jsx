@@ -24,6 +24,9 @@ class App extends React.Component {
     .then(() => {
       console.log(`${term} was searched`);
     })
+    .catch((err) => {
+      console.log(err);
+    })
 
   }
 
