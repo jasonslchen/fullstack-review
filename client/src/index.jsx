@@ -22,7 +22,10 @@ class App extends React.Component {
       mode: 'no-cors'
     })
     .then((data) => {
-      return data.json()
+      return data.text();
+    })
+    .then((text) => {
+      console.log(text);
     })
     .then((jsonData) => {
       this.setState({
@@ -55,7 +58,10 @@ class App extends React.Component {
       mode: 'no-cors'
       })
       .then((data) => {
-        return data.json()
+        return data.text();
+      })
+      .then((text) => {
+        console.log(text);
       })
       .then((jsonData) => {
         this.setState({
