@@ -18,7 +18,8 @@ class App extends React.Component {
 
   componentDidMount() {
     fetch('https://polar-forest-27584.herokuapp.com/repos', {
-      method: 'GET'
+      method: 'GET',
+      mode: 'no-cors'
     })
     .then((data) => {
       return data.json()
@@ -39,6 +40,7 @@ class App extends React.Component {
   search (term) {
     fetch('https://polar-forest-27584.herokuapp.com/repos', {
       method: 'POST',
+      mode: 'no-cors',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -49,7 +51,8 @@ class App extends React.Component {
     })
     .then(() => {
        fetch('https://polar-forest-27584.herokuapp.com/repos', {
-      method: 'GET'
+      method: 'GET',
+      mode: 'no-cors'
       })
       .then((data) => {
         return data.json()
