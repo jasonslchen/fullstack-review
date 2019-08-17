@@ -39,8 +39,16 @@ app.post('/repos', function (req, res) {
 });
 
 app.get('/repos', function (req, res) {
-  // TODO - your code here!
-  // This route should send back the top 25 repos
+  mongooseDB.sort().then((data) => {
+    // console.log(data);
+    let x = JSON.stringify(data);
+    console.log(x);
+    res.send(x).end();
+  }).catch((err) => {
+    res.sendStatus(500);
+  })
+
+
 });
 
 let port = 1128;

@@ -13,6 +13,21 @@ class App extends React.Component {
 
   }
 
+  componentDidMount() {
+    fetch('http://localhost:1128/repos', {
+      method: 'GET'
+    })
+    .then((data) => {
+      return data.json()
+    })
+    .then((jsonData) => {
+      console.log(JSON.stringify(jsonData));
+    })
+    .catch((err) => {
+      console.log('err', err);
+    })
+  }
+
   search (term) {
     fetch('http://localhost:1128/repos', {
       method: 'POST',

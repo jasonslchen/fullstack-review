@@ -31,4 +31,11 @@ let save = (userRepo, callback) => {
 
 }
 
+let sort = () => {
+  return Repo.find({}).sort({forks: 'desc'}).exec();
+
+}
+
 module.exports.save = save;
+
+module.exports.sort = sort;
