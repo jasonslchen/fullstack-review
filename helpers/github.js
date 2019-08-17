@@ -11,7 +11,7 @@ let getReposByUsername = (userName, callback) => {
     url: `https://api.github.com/users/${userName}/repos`,
     headers: {
       'User-Agent': 'request',
-      'Authorization': `token ${config.TOKEN}`
+      'Authorization': `token ${process.env.TOKEN}`
     }
   };
 
