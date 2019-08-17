@@ -16,29 +16,29 @@ class App extends React.Component {
 
   }
 
-  // componentDidMount() {
-  //   fetch('https://polar-forest-27584.herokuapp.com/repos', {
-  //     method: 'GET',
-  //     mode: 'no-cors'
-  //   })
-  //   .then((data) => {
-  //     return data.json();
-  //   })
-  //   .then((jsonData) => {
-  //     this.setState({
-  //       repos: jsonData,
-  //       top25: jsonData.filter((item, index) => {
-  //         return index < 25;
-  //       })
-  //     });
-  //   })
-  //   .catch((err) => {
-  //     console.log('err', err);
-  //   })
-  // }
+  componentDidMount() {
+    fetch('https://polar-forest-27584.herokuapp.com/repos', {
+      method: 'GET',
+      mode: 'no-cors'
+    })
+    .then((data) => {
+      return data.json();
+    })
+    .then((jsonData) => {
+      this.setState({
+        repos: jsonData,
+        top25: jsonData.filter((item, index) => {
+          return index < 25;
+        })
+      });
+    })
+    .catch((err) => {
+      console.log('err', err);
+    })
+  }
 
   search (term) {
-    fetch('/repos', {
+    fetch('https://polar-forest-27584.herokuapp.com/repos', {
       method: 'POST',
       mode: 'no-cors',
       headers: {
@@ -50,7 +50,7 @@ class App extends React.Component {
       console.log(`${term} was searched`);
     })
     .then(() => {
-       fetch('/repos', {
+       fetch('https://polar-forest-27584.herokuapp.com/repos', {
       method: 'GET',
       mode: 'no-cors'
       })
