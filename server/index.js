@@ -18,7 +18,7 @@ app.post('/repos', function (req, res) {
 
   githubAPIcall.getReposByUsername(req.body.user, (err, repos) => {
     if (err) {
-      res.sendStatus(500);
+      res.sendStatus(500).end();
     } else {
       let arr = [];
       for(let i = 0; i < repos.length; i++) {
@@ -26,7 +26,7 @@ app.post('/repos', function (req, res) {
       }
       Promise.all(arr)
       .then(() => {
-        res.sendStatus(200);
+        res.sendStatus(200).end();
       })
       .catch((err) => {
         console.log('ugh', err);
@@ -40,9 +40,9 @@ app.post('/repos', function (req, res) {
 
 app.get('/repos', function (req, res) {
   mongooseDB.sort().then((data) => {
-    res.send(data);
+    res.send(data).end();
   }).catch((err) => {
-    res.sendStatus(500);
+    res.sendStatus(500).end();
   })
 
 
