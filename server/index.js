@@ -8,9 +8,9 @@ const Promise = require('bluebird')
 app.use(bodyParser.json());
 
 
-// app.use(express.static(__dirname + '/../client/dist'));
+app.use(express.static(__dirname + '/../client/dist'));
 
-app.post('/', function (req, res) {
+app.post('/repos', function (req, res) {
   // TODO - your code here!
   // This route should take the github username provided
   // and get the repo information from the github API, then
@@ -38,7 +38,7 @@ app.post('/', function (req, res) {
 
 });
 
-app.get('/', function (req, res) {
+app.get('/repos', function (req, res) {
   mongooseDB.sort().then((data) => {
     res.send(data);
   }).catch((err) => {
