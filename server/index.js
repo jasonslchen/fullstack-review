@@ -17,7 +17,6 @@ app.use(express.static(__dirname + '/../client/dist'));
 
 
 app.post('/repos', function (req, res) {
-  console.log(req.body, 'req');
   githubAPIcall.getReposByUsername(req.body.user, (err, repos) => {
     if (err) {
       res.sendStatus(500).end();
@@ -41,9 +40,7 @@ app.post('/repos', function (req, res) {
 });
 
 app.get('/repos', function (req, res) {
-  console.log('get reached outer');
   mongooseDB.sort().then((data) => {
-    console.log('get reached inner');
     res.send(data).end();
   }).catch((err) => {
     res.sendStatus(500).end();
