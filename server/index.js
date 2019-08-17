@@ -17,7 +17,7 @@ app.use(express.static(__dirname + '/../client/dist'));
 
 
 app.post('/repos', function (req, res) {
-
+  console.log(req.body, 'req');
   githubAPIcall.getReposByUsername(req.body.user, (err, repos) => {
     if (err) {
       res.sendStatus(500).end();
