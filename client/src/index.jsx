@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
+import Top25Repos from './components/Top25Repos.jsx'
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      repos: []
+      repos: [],
+      top25: []
     }
+
 
   }
 
@@ -21,7 +24,12 @@ class App extends React.Component {
       return data.json()
     })
     .then((jsonData) => {
-      console.log(JSON.stringify(jsonData));
+      this.setState({
+        repos: jsonData,
+        top25: jsonData.filter((item, index) => {
+          return index < 25;
+        })
+      });
     })
     .catch((err) => {
       console.log('err', err);
@@ -39,6 +47,25 @@ class App extends React.Component {
     .then(() => {
       console.log(`${term} was searched`);
     })
+    .then(() => {
+       fetch('http://localhost:1128/repos', {
+      method: 'GET'
+      })
+      .then((data) => {
+        return data.json()
+      })
+      .then((jsonData) => {
+        this.setState({
+          repos: jsonData,
+          top25: jsonData.filter((item, index) => {
+            return index < 25;
+          })
+        });
+    })
+    .catch((err) => {
+      console.log('err', err);
+    })
+    })
     .catch((err) => {
       console.log(err);
     })
@@ -48,6 +75,7 @@ class App extends React.Component {
   render () {
     return (<div>
       <h1>Github Fetcher</h1>
+      <Top25Repos top25={this.state.top25} />
       <RepoList repos={this.state.repos}/>
       <Search onSearch={this.search.bind(this)}/>
     </div>)

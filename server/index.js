@@ -40,10 +40,7 @@ app.post('/repos', function (req, res) {
 
 app.get('/repos', function (req, res) {
   mongooseDB.sort().then((data) => {
-    // console.log(data);
-    let x = JSON.stringify(data);
-    console.log(x);
-    res.send(x).end();
+    res.send(data);
   }).catch((err) => {
     res.sendStatus(500);
   })
