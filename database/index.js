@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-mongoose.connect(process.env.mongodbatlasURL);
+let uri = 'mongodb+srv://helloitjase:mongodb@cluster-github-sh8ty.mongodb.net/test?retryWrites=true&w=majority'
+
+mongoose.connect(uri);
 
 let repoSchema = mongoose.Schema({
   user: {type: String, required: true},
