@@ -17,7 +17,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://polar-forest-27584.herokuapp.com/repos', {
+    fetch('https://polar-forest-27584.herokuapp.com/', {
       method: 'GET',
       mode: 'no-cors'
     })
