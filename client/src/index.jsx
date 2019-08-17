@@ -38,7 +38,7 @@ class App extends React.Component {
   }
 
   search (term) {
-    fetch('/repos', {
+    fetch('https://polar-forest-27584.herokuapp.com/repos', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
