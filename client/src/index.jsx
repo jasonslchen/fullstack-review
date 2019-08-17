@@ -17,7 +17,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://polar-forest-27584.herokuapp.com/server/repos', {
+    fetch('https://polar-forest-27584.herokuapp.com/repos', {
       method: 'GET',
       mode: 'no-cors'
     })
@@ -38,7 +38,7 @@ class App extends React.Component {
   }
 
   search (term) {
-    fetch('https://polar-forest-27584.herokuapp.com/server/repos', {
+    fetch('https://polar-forest-27584.herokuapp.coms/repos', {
       method: 'POST',
       mode: 'no-cors',
       headers: {
@@ -50,7 +50,7 @@ class App extends React.Component {
       console.log(`${term} was searched`);
     })
     .then(() => {
-       fetch('https://polar-forest-27584.herokuapp.com/server/repos', {
+       fetch('https://polar-forest-27584.herokuapp.com/repos', {
       method: 'GET',
       mode: 'no-cors'
       })
