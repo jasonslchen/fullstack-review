@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 let uri = 'mongodb+srv://helloitjase:mongodb@cluster-github-sh8ty.mongodb.net/test?retryWrites=true&w=majority'
 
-mongoose.connect(uri);
+mongoose.connect(uri).then((message) => {console.log("connected", message)}).catch((err) => {console.log('error', err)})
 
 let repoSchema = mongoose.Schema({
   user: {type: String, required: true},
