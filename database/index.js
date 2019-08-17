@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fetcher');
+mongoose.connect(process.env.mongodbatlasURL);
 
 let repoSchema = mongoose.Schema({
   user: {type: String, required: true},
