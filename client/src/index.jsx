@@ -39,7 +39,7 @@ class App extends React.Component {
 
   search (term) {
     fetch('/repos', {
-      method: 'POST'
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
