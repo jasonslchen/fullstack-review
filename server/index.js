@@ -8,6 +8,12 @@ const Promise = require('bluebird')
 app.use(bodyParser.json());
 
 
+app.use(express.static(__dirname + '/../client/dist'));
+
+app.get('*',(req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
+});
+
 
 app.post('/repos', function (req, res) {
 
@@ -43,7 +49,6 @@ app.get('/repos', function (req, res) {
 
 });
 
-app.use(express.static(__dirname + '/../client/dist'));
 let port = process.env.PORT;
 console.log(process.env.PORT);
 if (!port) {
