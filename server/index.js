@@ -8,7 +8,7 @@ const Promise = require('bluebird')
 app.use(bodyParser.json());
 
 
-app.use(express.static(__dirname + '/../client/dist'));
+// app.use(express.static(__dirname + '/../client/dist'));
 
 app.post('/', function (req, res) {
   // TODO - your code here!
