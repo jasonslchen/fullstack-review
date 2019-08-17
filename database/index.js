@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-let uri = 'mongodb://helloitjase:mongodb@cluster-github-sh8ty.mongodb.net/test?retryWrites=true&w=majority'
+let uri = 'mongodb://jasonchen:m0ngodb@ds263927.mlab.com:63927/heroku_kkdb3xrq'
 
 mongoose.connect(uri).then((message) => {console.log("connected", message)}).catch((err) => {console.log('error', err)})
 
