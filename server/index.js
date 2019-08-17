@@ -2,7 +2,8 @@ const express = require('express');
 let app = express();
 const bodyParser = require('body-parser');
 const githubAPIcall = require('../helpers/github.js');
-const mongooseSave = require('../database/index.js');
+const mongooseDB = require('../database/index.js');
+const Promise = require('bluebird')
 
 app.use(bodyParser.json());
 
@@ -17,22 +18,23 @@ app.post('/repos', function (req, res) {
 
   githubAPIcall.getReposByUsername(req.body.user, (err, repos) => {
     if (err) {
-      console.log(err);
-      res.status(500).send();
+      res.sendStatus(500);
     } else {
-        repos.forEach((repo) => {
-          mongooseSave.save(repo, (err, data) => {
-            if (err) {
-              console.log(err);
-              res.status(500).send(err);
-            } else {
-              res.status(200).send();
-            }
-          });
-        })
+      let arr = [];
+      for(let i = 0; i < repos.length; i++) {
+        arr.push(mongooseDB.save(repos[i]));
       }
-    })
-  // console.log(req.body);
+      Promise.all(arr)
+      .then(() => {
+        res.sendStatus(200);
+      })
+      .catch((err) => {
+        console.log('ugh', err);
+      })
+    }
+
+  })
+
 
 });
 

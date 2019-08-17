@@ -2,19 +2,20 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/fetcher');
 
 let repoSchema = mongoose.Schema({
-  user: String,
+  user: {type: String, required: true},
   repo_id: {
     type: Number,
-    unique: true
+    unique: true,
+    required: true
   },
-  repoName: String,
-  repoFullName: String,
-  repoHTMLurl: String,
-  forks: Number,
+  repoName: {type: String, required: true},
+  repoFullName: {type: String, required: true},
+  repoHTMLurl: {type: String, required: true},
+  forks: {type: Number, required: true},
 
 });
 
-let Repo = mongoose.model('Repo', repoSchema);
+let Repo = mongoose.model('UserRepos', repoSchema);
 
 let save = (userRepo, callback) => {
   let newEntry = new Repo({
@@ -26,12 +27,7 @@ let save = (userRepo, callback) => {
     forks: userRepo.forks
   })
 
-  newEntry.save((err) => {
-    if (err) {
-      callback(err, null);
-    }
-    callback(null)
-  })
+  return Repo.create(newEntry);
 
 }
 
